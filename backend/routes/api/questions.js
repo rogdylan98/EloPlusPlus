@@ -38,3 +38,5 @@ router.get('/delete/:id', asyncHandler(async function(req, res) {
     await QuestionRepository.deleteOne(req.params.id);
     return res.redirect('/');
   }));
+
+module.exports = router;
