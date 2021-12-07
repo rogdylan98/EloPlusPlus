@@ -1,6 +1,8 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check, validationResult } = require('express-validator');
+const csrf = require('csurf')
+const csrfProtection = csrf({cookie:true})
 const QuestionRepository = require('../../db/question-repository')
 
 const router = express.Router();
@@ -12,10 +14,11 @@ router.get('/', asyncHandler(async function(_req, res){
 
 router.post(
     '/',
+    csrfProtection,
     //insert Validations here,
     asyncHandler(async function (req, res) {
-        const id = await QuestionRepository.create(req.body);
-        return res.redirect(`${req.baseUrl}/${id}`);
+        await QuestionRepository.create(req.body);
+        return res.redirect(`/`);
     })
 );
 
