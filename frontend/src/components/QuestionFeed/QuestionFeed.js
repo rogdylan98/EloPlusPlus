@@ -10,7 +10,7 @@ const QuestionFeed = () => {
     const question = useSelector(state => {
         return state.question.list.map(questionId => state.question[questionId]);
     });
-    console.log("LOOK HERE", question)
+    console.log("LOOK HERE!", question)
     useEffect(()=> {
         dispatch(getQuestions());
     }, [dispatch]);
