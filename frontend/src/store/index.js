@@ -3,10 +3,12 @@ import thunk from "redux-thunk";
 import { restoreCSRF, csrfFetch } from './csrf';
 import sessionReducer from "./session";
 import * as sessionActions from './session';
+import questionReducer from "./question";
 
 const rootReducer = combineReducers({
   // add reducer functions here
   session: sessionReducer,
+  question: questionReducer
 });
 
 let enhancer;

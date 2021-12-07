@@ -5,6 +5,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import QuestionFeed from "./components/QuestionFeed";
 
 function App() {
   const dispatch = useDispatch();
@@ -15,6 +16,8 @@ function App() {
 
   return (
     <>
+    <nav className="navBar">
+      <h1 className="title">Elo++</h1>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -26,6 +29,13 @@ function App() {
           </Route>
         </Switch>
       )}
+    </nav>
+    <main>
+      <div className="questionFeed">
+        <QuestionFeed />
+      </div>
+    </main>
+
     </>
   );
 }
