@@ -35,7 +35,6 @@ export const getQuestions = () => async (dispatch) => {
 }
 
 const initialState = {
-    list: [],
     types: []
 }
 

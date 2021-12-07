@@ -7,9 +7,7 @@ import { getQuestions } from '../../store/question';
 const QuestionFeed = () => {
     const dispatch = useDispatch();
     // const { questionId } = useParams();
-    const question = useSelector(state => {
-        return state.question.list.map(questionId => state.question[questionId]);
-    });
+    const question = useSelector(state => state.question);
     console.log("LOOK HERE!", question)
     useEffect(()=> {
         dispatch(getQuestions());
@@ -21,11 +19,7 @@ const QuestionFeed = () => {
     return (
         <main>
             <nav>
-                {question.map((question) => {
-                    return (
-                        <h1>{question.body}</h1>
-                    )
-                })}
+                {Object.values(question).map(question => <h1>{question.body}</h1>)}
             </nav>
         </main>
     )
