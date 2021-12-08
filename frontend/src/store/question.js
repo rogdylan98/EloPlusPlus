@@ -12,7 +12,7 @@ const addOneQuestion = (question) => ({
 });
 
 export const createQuestion = (data) => async (dispatch) => {
-    const response = await fetch (`api/questions/`, {
+    const response = await fetch (`/api/question/`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'

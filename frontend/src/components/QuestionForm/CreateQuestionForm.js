@@ -56,7 +56,7 @@ const CreateQuestionForm = ({ hideForm }) => {
                     value={topic}
                     onChange={updateTopic}
                 />
-            <button type="submit">Create a Question</button>
+            <button type="submit" >Create a Question</button>
             <button type="button" onClick={handleCancelClick}>Cancel</button>
             </form>
         </div>
