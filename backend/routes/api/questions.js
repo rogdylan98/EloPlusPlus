@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check, validationResult } = require('express-validator');
-const QuestionRepository = require('../../db/question-repository')
+const QuestionRepository = require('../../db/question-repository');
 
 const router = express.Router();
 
@@ -11,11 +11,12 @@ router.get('/', asyncHandler(async function(_req, res){
 }));
 
 router.post(
-    '/question',
+    '/',
     //insert Validations here,
     asyncHandler(async function (req, res) {
-        await QuestionRepository.create(req.body);
-        return res.redirect('/');
+        console.log("LOOK HERE", req.body)
+        const question = await QuestionRepository.create(req.body);
+        return res.json(question)
     })
 );
 
@@ -25,7 +26,7 @@ router.put(
     asyncHandler(async function (req, res) {
         const id = await QuestionRepository.update(req.body);
         const question = await QuestionRepository.one(id);
-        return res.json(question)
+        return res.json(question);
     })
 );
 
@@ -38,5 +39,7 @@ router.get('/delete/:id', asyncHandler(async function(req, res) {
     await QuestionRepository.deleteOne(req.params.id);
     return res.redirect('/');
   }));
+
+
 
 module.exports = router;
