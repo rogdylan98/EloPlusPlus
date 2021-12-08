@@ -22,7 +22,7 @@ const CreateQuestionForm = ({ hideForm }) => {
         }
         const question = await dispatch(createQuestion(payload));
         if (question) {
-            history.push(`/${question.id}`);
+            history.push(`/`);
             hideForm();
         }
     };

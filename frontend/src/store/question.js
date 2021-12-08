@@ -48,7 +48,8 @@ export const getQuestions = () => async (dispatch) => {
 }
 
 export const updateQuestion = (data) => async (dispatch) => {
-    const response = await window.csrfFetch(`/api/question/${data.id}`, {
+    console.log(data)
+    const response = await window.csrfFetch (`/api/question/${data.id}`, {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'
@@ -57,7 +58,8 @@ export const updateQuestion = (data) => async (dispatch) => {
     });
 
     if (response.ok) {
-      const list = await fetch (`/api/question`);;
+      const list = await fetch (`/api/question`);
+      console.log("SUCCESS")
       dispatch(updateList(list));
       return list;
     }

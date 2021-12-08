@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateQuestion} from '../../store/question';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 const EditQuestionForm = ({ question, hideForm }) => {
     const dispatch = useDispatch();
-    const [id, setId] = useState(question.id);
+    const history = useHistory();
+    const { questionId } = useParams();
+    console.log("LOOK HERE", useParams())
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [topic, setTopic] = useState('');
@@ -17,13 +19,12 @@ const EditQuestionForm = ({ question, hideForm }) => {
         e.preventDefault();
 
         const payload = {
-            ...question,
-            id,
-            body,
-            title
+            ...question[questionId],
         }
         const updatedQuestion = await dispatch(updateQuestion(payload));
         if (updatedQuestion) {
+            history.push(`/${questionId}`);
+            console.log(history)
             hideForm();
         }
     };
