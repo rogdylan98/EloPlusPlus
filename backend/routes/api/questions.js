@@ -14,7 +14,6 @@ router.post(
     '/',
     //insert Validations here,
     asyncHandler(async function (req, res) {
-        console.log("LOOK HERE", req.body)
         const question = await QuestionRepository.create(req.body);
         return res.json(question)
     })
@@ -24,6 +23,7 @@ router.put(
     '/:id',
     //check validators again here
     asyncHandler(async function (req, res) {
+        console.log("LOOK HERE", req.params.id);
         const id = await QuestionRepository.update(req.body);
         const question = await QuestionRepository.one(id);
         return res.json(question);

@@ -15,7 +15,6 @@ const QuestionFeed = () => {
     const [showFormEdit, setShowFormEdit] = useState(false);
     const [showFormDelete, setShowFormDelete] = useState(false);
 
-    console.log("LOOK HERE!", question)
     useEffect(()=> {
         dispatch(getQuestions());
     }, [dispatch]);
@@ -32,7 +31,9 @@ const QuestionFeed = () => {
                     <NavLink key={question.id} to={`/question/${question.id}`}>
                         <h1 className="questionTitle">{question.title}</h1>
                     </NavLink>
-                    <button onClick={() => setShowFormEdit(true)}>Edit</button>
+                    <NavLink to={`/question/${question.id}`}>
+                        <button onClick={() => setShowFormEdit(true)}>Edit</button>
+                     </NavLink>
                     <button onClick={() => setShowFormEdit(true)}>Delete</button>
                 </div>
                 )}
