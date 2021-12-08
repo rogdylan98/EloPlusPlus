@@ -11,7 +11,7 @@ router.get('/', asyncHandler(async function(_req, res){
 }));
 
 router.post(
-    '/',
+    '/question',
     //insert Validations here,
     asyncHandler(async function (req, res) {
         await QuestionRepository.create(req.body);

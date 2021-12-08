@@ -12,8 +12,12 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT
       },
-      userId: {
+      title: {
         allowNull: false,
+        type: Sequelize.TEXT
+      },
+      userId: {
+        // allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: 'Users'}
       },
