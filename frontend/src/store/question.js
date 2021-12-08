@@ -12,13 +12,20 @@ const addOneQuestion = (question) => ({
 });
 
 export const createQuestion = (data) => async (dispatch) => {
-    const response = await fetch (`/api/question/`, {
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    });
+    // const response = await fetch (`/api/question/`, {
+    //     method: 'post',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(data)
+    // });
+    const response = await window.csrfFetch (`/api/question/`, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
     if (response.ok) {
         const question = await response.json();
         dispatch(addOneQuestion(question));
@@ -39,16 +46,17 @@ const initialState = {
 }
 
 const questionReducer = (state = initialState, action) => {
+    const allQuestions = { ...state };
     switch (action.type) {
         case LOAD: {
-            const allQuestions = {};
             action.list.forEach(question => {
                 allQuestions[question.id] = question;
             });
-            return {
-                ...allQuestions,
-                ...state
-            }
+            return allQuestions
+        }
+        case ADD_ONE: {
+            allQuestions[action.question.id] = action.question;
+            return allQuestions
         }
         default:
             return state;

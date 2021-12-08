@@ -35,6 +35,7 @@ const CreateQuestionForm = ({ hideForm }) => {
     return (
         <div className="questionForm">
             <form onSubmit={handleSubmit}>
+                {/* <input type="hidden" name="_csrf" value="<%= csrftoken %>"/> */}
                 <input
                     type="text"
                     placeholder="title"

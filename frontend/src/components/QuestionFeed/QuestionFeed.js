@@ -22,7 +22,9 @@ const QuestionFeed = () => {
         <main>
             <button onClick={() => setShowForm(true)}>Ask a Question!</button>
             <nav>
-                {Object.values(question).map(question => <h1>{question.body}</h1>)}
+                {Object.values(question).map(question => <NavLink key={question.id} to={`/question/${question.id}`}>
+                <h1>{question.title}</h1>
+                </NavLink>)}
             </nav>
             {showForm ? (
                 <CreateQuestionForm hideForm={() => setShowForm(false)}/>

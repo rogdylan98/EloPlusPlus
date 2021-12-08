@@ -2,7 +2,7 @@ const { Question } = require('./models');
 
 async function create(details) {
     const question = await Question.create(details);
-    return question.id
+    return question;
 }
 
 async function update(details) {
