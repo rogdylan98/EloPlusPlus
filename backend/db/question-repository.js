@@ -8,7 +8,7 @@ async function create(details) {
 async function update(details) {
     const id = details.id;
     delete details.id;
-    await Question.update(
+    const updatedQuestion = await Question.update(
         details,
         {
             where: { id },
@@ -16,7 +16,7 @@ async function update(details) {
             plain: true,
         }
     );
-    return id;
+    return updatedQuestion;
 }
 
 async function one(id) {
