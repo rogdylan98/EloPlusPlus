@@ -10,7 +10,9 @@ import DeleteQuestionForm from '../DeleteQuestionForm/DeleteQuestionForm';
 const QuestionFeed = () => {
     const dispatch = useDispatch();
     // const { questionId } = useParams();
-    const question = useSelector(state => state.question);
+    const questions = useSelector(state => state.question);
+    const [selectedQuestionEdit, setSelectedQuestionEdit] = useState();
+    const [selectedQuestionDelete, setSelectedQuestionDelete] = useState();
     const [showFormCreate, setShowFormCreate] = useState(false);
     const [showFormEdit, setShowFormEdit] = useState(false);
     const [showFormDelete, setShowFormDelete] = useState(false);
@@ -18,23 +20,31 @@ const QuestionFeed = () => {
     useEffect(()=> {
         dispatch(getQuestions());
     }, [dispatch]);
-    if (!question) {
+    if (!questions) {
         return null;
     }
 
     return (
         <main>
-            <button onClick={() => setShowFormCreate(true)}>Ask a Question!</button>
+            <button className="askQuestion" onClick={() => setShowFormCreate(true)}>Add Question</button>
             <nav>
-                {Object.values(question).map(question =>
+                {Object.values(questions).map(question =>
                 <div className="questionBlock">
                     <NavLink key={question.id} to={`/question/${question.id}`}>
                         <h1 className="questionTitle">{question.title}</h1>
                     </NavLink>
                     <NavLink to={`/question/${question.id}`}>
-                        <button onClick={() => setShowFormEdit(true)}>Edit</button>
+                        <button onClick={() => {
+                            setSelectedQuestionEdit(question)
+                            setShowFormEdit(true)
+                        }}>Edit</button>
                      </NavLink>
-                    <button onClick={() => setShowFormEdit(true)}>Delete</button>
+                     <NavLink to={`/question/${question.id}`}>
+                        <button onClick={() => {
+                            setSelectedQuestionDelete(question)
+                            setShowFormDelete(true)
+                        }}>Delete</button>
+                     </NavLink>
                 </div>
                 )}
             </nav>
@@ -42,10 +52,10 @@ const QuestionFeed = () => {
                 <CreateQuestionForm hideForm={() => setShowFormCreate(false)}/>
             ) : (null) }
             {showFormEdit ? (
-                <EditQuestionForm hideForm={() => setShowFormEdit(false)} question={question}/>
+                <EditQuestionForm hideForm={() => setShowFormEdit(false)} question={selectedQuestionEdit}/>
             ) : (null) }
             {showFormDelete ? (
-                <DeleteQuestionForm hideForm={() => setShowFormDelete(false)} question={question}/>
+                <DeleteQuestionForm hideForm={() => setShowFormDelete(false)} question={selectedQuestionDelete}/>
             ) : (null) }
         </main>
     )

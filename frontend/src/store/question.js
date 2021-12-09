@@ -48,7 +48,6 @@ export const getQuestions = () => async (dispatch) => {
 }
 
 export const updateQuestion = (data) => async (dispatch) => {
-    console.log(data)
     const response = await window.csrfFetch (`/api/question/${data.id}`, {
       method: 'put',
       headers: {
@@ -56,9 +55,10 @@ export const updateQuestion = (data) => async (dispatch) => {
       },
       body: JSON.stringify(data)
     });
-
+    console.log("response", response);
     if (response.ok) {
-      const list = await fetch (`/api/question`);
+      const getResponse = await fetch (`/api/question`);
+      const list = await getResponse.json();
       console.log("SUCCESS")
       dispatch(updateList(list));
       return list;
@@ -66,8 +66,9 @@ export const updateQuestion = (data) => async (dispatch) => {
   };
 
 export const deleteQuestion = (data) => async (dispatch) => {
-    const response = await fetch(`/api/items/${data.Id}`, {
-        method: 'delete'
+    console.log(data);
+    const response = await window.csrfFetch (`/api/question/delete/${data.id}`, {
+        method: 'get'
       });
       if (response.ok) {
         const question = await response.json();
@@ -98,9 +99,7 @@ const questionReducer = (state = initialState, action) => {
             return allQuestions;
         }
         case DELETE_ONE: {
-            if (allQuestions[action.id]) {
-                delete allQuestions[action.id]
-            }
+            delete allQuestions[action.question.id]
             return allQuestions;
         }
         default:
