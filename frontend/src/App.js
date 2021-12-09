@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import QuestionFeed from "./components/QuestionFeed";
+import EditQuestionForm from "./components/EditQuestionForm/EditQuestionForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +33,15 @@ function App() {
     </nav>
     <main>
       <div className="questionFeed">
-        <QuestionFeed />
+        <Switch>
+          <Route path="/">
+            <QuestionFeed />
+          </Route>
+          {/* <Route path='/question/question:id'>
+              <QuestionDetails />
+          </Route> */}
+
+        </Switch>
       </div>
     </main>
 
