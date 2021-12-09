@@ -6,11 +6,13 @@ import { getQuestions } from '../../store/question';
 import CreateQuestionForm from '../QuestionForm/CreateQuestionForm';
 import EditQuestionForm from '../EditQuestionForm/EditQuestionForm';
 import DeleteQuestionForm from '../DeleteQuestionForm/DeleteQuestionForm';
+import QuestionDetails from '../QuestionDetails';
 
 const QuestionFeed = () => {
     const dispatch = useDispatch();
     // const { questionId } = useParams();
     const questions = useSelector(state => state.question);
+    const [selectedQuestion, setSelectedQuestion] = useState();
     const [selectedQuestionEdit, setSelectedQuestionEdit] = useState();
     const [selectedQuestionDelete, setSelectedQuestionDelete] = useState();
     const [showFormCreate, setShowFormCreate] = useState(false);
@@ -30,7 +32,12 @@ const QuestionFeed = () => {
             <nav>
                 {Object.values(questions).map(question =>
                 <div className="questionBlock">
-                    <NavLink key={question.id} to={`/question/${question.id}`}>
+                    <NavLink key={question.id} to={`/question/${question.id}`} onClick={
+                        () => {
+                            setSelectedQuestion(question);
+                            <QuestionDetails question={selectedQuestion} />;
+                        }
+                    }>
                         <h1 className="questionTitle">{question.title}</h1>
                     </NavLink>
                     <NavLink to={`/question/${question.id}`}>

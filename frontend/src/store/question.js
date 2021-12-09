@@ -1,5 +1,3 @@
-
-
 const LOAD = 'question/LOAD';
 const ADD_ONE = 'question/ADD_ONE';
 const DELETE_ONE = 'question/DELETE_ONE';
@@ -14,7 +12,7 @@ const addOneQuestion = (question) => ({
     question
 });
 
-const deleteOneQuestion = (id) => ({
+const deleteOneQuestion = (id, list) => ({
     type: DELETE_ONE,
     id
 });
@@ -67,12 +65,11 @@ export const updateQuestion = (data) => async (dispatch) => {
 
 export const deleteQuestion = (data) => async (dispatch) => {
     console.log(data);
-    const response = await window.csrfFetch (`/api/question/delete/${data.id}`, {
+    const response = await fetch(`/api/question/delete/${data.id}`, {
         method: 'get'
       });
       if (response.ok) {
-        const question = await response.json();
-        dispatch(deleteOneQuestion(question.id));
+        await dispatch(deleteOneQuestion(data.id));
       }
 }
 const initialState = {
@@ -99,7 +96,7 @@ const questionReducer = (state = initialState, action) => {
             return allQuestions;
         }
         case DELETE_ONE: {
-            delete allQuestions[action.question.id]
+            delete allQuestions[action.id];
             return allQuestions;
         }
         default:
