@@ -48,6 +48,7 @@ export const getQuestions = () => async (dispatch) => {
 }
 
 export const updateQuestion = (data) => async (dispatch) => {
+    console.log(data);
     const response = await window.csrfFetch (`/api/question/${data.id}`, {
       method: 'put',
       headers: {
