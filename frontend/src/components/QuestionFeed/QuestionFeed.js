@@ -4,8 +4,6 @@ import { NavLink, Route, useParams } from 'react-router-dom';
 import './QuestionFeed.css';
 import { getQuestions } from '../../store/question';
 import CreateQuestionForm from '../QuestionForm/CreateQuestionForm';
-import EditQuestionForm from '../EditQuestionForm/EditQuestionForm';
-import DeleteQuestionForm from '../DeleteQuestionForm/DeleteQuestionForm';
 import QuestionDetails from '../QuestionDetails';
 
 const QuestionFeed = () => {
@@ -13,11 +11,8 @@ const QuestionFeed = () => {
     // const { questionId } = useParams();
     const questions = useSelector(state => state.question);
     const [selectedQuestion, setSelectedQuestion] = useState();
-    const [selectedQuestionEdit, setSelectedQuestionEdit] = useState();
-    const [selectedQuestionDelete, setSelectedQuestionDelete] = useState();
     const [showFormCreate, setShowFormCreate] = useState(false);
-    const [showFormEdit, setShowFormEdit] = useState(false);
-    const [showFormDelete, setShowFormDelete] = useState(false);
+
 
     useEffect(()=> {
         dispatch(getQuestions());
@@ -29,41 +24,21 @@ const QuestionFeed = () => {
     return (
         <main>
             <button className="askQuestion" onClick={() => setShowFormCreate(true)}>Add Question</button>
-            <nav>
+            {!selectedQuestion && (<nav>
                 {Object.values(questions).map(question =>
                 <div className="questionBlock">
-                    <NavLink key={question.id} to={`/question/${question.id}`} onClick={
-                        () => {
-                            setSelectedQuestion(question);
-                            <QuestionDetails question={selectedQuestion} />;
-                        }
-                    }>
+                    <NavLink key={question.id} to={`/question/${question.id}`} onClick={() => {
+                        setSelectedQuestion(question);
+                    }} >
                         <h1 className="questionTitle">{question.title}</h1>
                     </NavLink>
-                    <NavLink to={`/question/${question.id}`}>
-                        <button onClick={() => {
-                            setSelectedQuestionEdit(question)
-                            setShowFormEdit(true)
-                        }}>Edit</button>
-                     </NavLink>
-                     <NavLink to={`/question/${question.id}`}>
-                        <button onClick={() => {
-                            setSelectedQuestionDelete(question)
-                            setShowFormDelete(true)
-                        }}>Delete</button>
-                     </NavLink>
                 </div>
                 )}
-            </nav>
+            </nav>)}
             {showFormCreate ? (
                 <CreateQuestionForm hideForm={() => setShowFormCreate(false)}/>
             ) : (null) }
-            {showFormEdit ? (
-                <EditQuestionForm hideForm={() => setShowFormEdit(false)} question={selectedQuestionEdit}/>
-            ) : (null) }
-            {showFormDelete ? (
-                <DeleteQuestionForm hideForm={() => setShowFormDelete(false)} question={selectedQuestionDelete}/>
-            ) : (null) }
+            {selectedQuestion && <QuestionDetails question={selectedQuestion} clickHandler={() => {setSelectedQuestion(null)}} />}
         </main>
     )
 }

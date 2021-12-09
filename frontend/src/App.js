@@ -33,9 +33,9 @@ function App() {
     <main>
       <div className="questionFeed">
       <Switch>
-      <Route path="/question/:id">
+      {/* <Route path="/question/:id">
             <QuestionDetails />
-          </Route>
+          </Route> */}
           <Route path="/">
             <QuestionFeed/>
           </Route>
