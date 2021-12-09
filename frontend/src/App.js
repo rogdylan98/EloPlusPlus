@@ -6,7 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import QuestionFeed from "./components/QuestionFeed";
-
+import QuestionDetails from "./components/QuestionDetails"
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -32,7 +32,14 @@ function App() {
     </nav>
     <main>
       <div className="questionFeed">
-        <QuestionFeed />
+      <Switch>
+      {/* <Route path="/question/:id">
+            <QuestionDetails />
+          </Route> */}
+          <Route path="/">
+            <QuestionFeed/>
+          </Route>
+      </Switch>
       </div>
     </main>
 

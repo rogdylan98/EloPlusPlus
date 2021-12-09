@@ -1,5 +1,4 @@
 
-
 const LOAD = 'question/LOAD';
 const ADD_ONE = 'question/ADD_ONE';
 const DELETE_ONE = 'question/DELETE_ONE';
@@ -14,14 +13,15 @@ const addOneQuestion = (question) => ({
     question
 });
 
-const deleteOneQuestion = (id) => ({
+const deleteOneQuestion = (id, list) => ({
     type: DELETE_ONE,
     id
 });
 
-const updateList = (list) => ({
+const updateQ = (id, question) => ({
     type: UPDATE,
-    list
+    id,
+    question
 })
 
 export const createQuestion = (data) => async (dispatch) => {
@@ -34,7 +34,7 @@ export const createQuestion = (data) => async (dispatch) => {
         });
     if (response.ok) {
         const question = await response.json();
-        dispatch(addOneQuestion(question));
+        await dispatch(addOneQuestion(question));
         return question
     }
 };
@@ -43,11 +43,12 @@ export const getQuestions = () => async (dispatch) => {
     const response = await fetch (`/api/question`);
     if (response.ok) {
         const list = await response.json();
-        dispatch(load(list));
+        await dispatch(load(list));
     }
 }
 
 export const updateQuestion = (data) => async (dispatch) => {
+    console.log(data);
     const response = await window.csrfFetch (`/api/question/${data.id}`, {
       method: 'put',
       headers: {
@@ -55,24 +56,26 @@ export const updateQuestion = (data) => async (dispatch) => {
       },
       body: JSON.stringify(data)
     });
-    console.log("response", response);
     if (response.ok) {
-      const getResponse = await fetch (`/api/question`);
-      const list = await getResponse.json();
-      console.log("SUCCESS")
-      dispatch(updateList(list));
-      return list;
+    //   const getResponse = await fetch (`/api/question`);
+    //   const list = await getResponse.json();
+    //   console.log("SUCCESS")
+    //   dispatch(updateList(list));
+    //   return list;
+        // const question = await response.json;
+        console.log("DATA", data);
+        await dispatch(updateQ(data.id, data));
+        return data;
     }
   };
 
 export const deleteQuestion = (data) => async (dispatch) => {
     console.log(data);
-    const response = await window.csrfFetch (`/api/question/delete/${data.id}`, {
+    const response = await fetch(`/api/question/delete/${data.id}`, {
         method: 'get'
       });
       if (response.ok) {
-        const question = await response.json();
-        dispatch(deleteOneQuestion(question.id));
+        await dispatch(deleteOneQuestion(data.id));
       }
 }
 const initialState = {
@@ -93,13 +96,11 @@ const questionReducer = (state = initialState, action) => {
             return allQuestions;
         }
         case UPDATE: {
-            action.list.forEach(question => {
-                allQuestions[question.id] = question;
-            });
+            allQuestions[action.id] = action.question;
             return allQuestions;
         }
         case DELETE_ONE: {
-            delete allQuestions[action.question.id]
+            delete allQuestions[action.id];
             return allQuestions;
         }
         default:
