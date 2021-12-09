@@ -10,12 +10,13 @@ const DeleteQuestionForm = ({ question, hideForm }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const payload = {
+        const deleteQ = {
             ...question,
             body,
             title
         }
-        const deletedQuestion = await dispatch(deleteQuestion(payload));
+        console.log(deleteQ);
+        const deletedQuestion = await dispatch(deleteQuestion(deleteQ));
         if (deletedQuestion) {
             hideForm();
         }

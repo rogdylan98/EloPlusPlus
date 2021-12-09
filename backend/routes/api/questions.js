@@ -23,7 +23,6 @@ router.put(
     '/:id',
     //check validators again here
     asyncHandler(async function (req, res) {
-        console.log("LOOK HERE", req.params.id);
         const id = await QuestionRepository.update(req.body);
         const question = await QuestionRepository.one(id);
         return res.json(question);
@@ -36,6 +35,7 @@ router.get('/:id', asyncHandler(async function(req, res) {
   }));
 
 router.get('/delete/:id', asyncHandler(async function(req, res) {
+    console.log("ARE WE HERE");
     await QuestionRepository.deleteOne(req.params.id);
     return res.redirect('/');
   }));

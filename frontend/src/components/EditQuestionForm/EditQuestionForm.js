@@ -6,8 +6,8 @@ import { useHistory, useParams } from 'react-router-dom';
 const EditQuestionForm = ({ question, hideForm }) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { questionId } = useParams();
-    console.log("LOOK HERE", useParams())
+    // const { questionId } = useParams();
+    // console.log("LOOK HERE", useParams())
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [topic, setTopic] = useState('');
@@ -17,13 +17,15 @@ const EditQuestionForm = ({ question, hideForm }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const payload = {
-            ...question[questionId],
+        const updatedQ = {
+            ...question,
+            title,
+            body,
+            topic
         }
-        const updatedQuestion = await dispatch(updateQuestion(payload));
+        const updatedQuestion = await dispatch(updateQuestion(updatedQ));
         if (updatedQuestion) {
-            history.push(`/${questionId}`);
+            history.push(`/${question.id}`);
             console.log(history)
             hideForm();
         }
