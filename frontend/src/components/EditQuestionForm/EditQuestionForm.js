@@ -6,8 +6,9 @@ import { useHistory, useParams } from 'react-router-dom';
 const EditQuestionForm = ({ question, hideForm }) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { questionId } = useParams();
-    console.log("LOOK HERE", useParams())
+    // const { questionId } = useParams();
+    // console.log("LOOK HERE", questionId)
+    console.log(question)
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [topic, setTopic] = useState('');
@@ -19,11 +20,13 @@ const EditQuestionForm = ({ question, hideForm }) => {
         e.preventDefault();
 
         const payload = {
-            ...question[questionId],
+            ...question,
+            title,
+            body
         }
         const updatedQuestion = await dispatch(updateQuestion(payload));
         if (updatedQuestion) {
-            history.push(`/${questionId}`);
+            history.push(`/${question.id}`);
             console.log(history)
             hideForm();
         }
