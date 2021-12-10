@@ -12,7 +12,7 @@ const LoginFormPage = () => {
     const [errors, setErrors] = useState([]);
 
     if (sessionUser) return (
-        <Redirect to="/" />
+        <Redirect to="/questions" />
       );
 
       const handleSubmit = (e) => {

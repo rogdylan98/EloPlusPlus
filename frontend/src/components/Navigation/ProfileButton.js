@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import {NavLink, Redirect } from 'react-router-dom';
+import SplashPage from "../SplashPage";
+
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const [loggedOut, setLoggedOut] = useState(false);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -26,6 +30,7 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+
   };
 
   return (
@@ -38,7 +43,7 @@ function ProfileButton({ user }) {
           <li>{user.username}</li>
           <li>{user.email}</li>
           <li>
-            <button onClick={logout}>Log Out</button>
+              <button onClick={logout}>Log Out</button>
           </li>
         </ul>
       )}
