@@ -12,13 +12,14 @@ const CreateQuestionForm = ({ hideForm }) => {
     const updateBody = (e) => setBody(e.target.value);
     const updateTitle = (e) => setTitle(e.target.value);
     const updateTopic = (e) => setTopic(e.target.value);
-
+    const userId = useSelector(state => state.session.user.id)
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const payload = {
             body,
-            title
+            title,
+            userId
         }
         const question = await dispatch(createQuestion(payload));
         if (question) {
