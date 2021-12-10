@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { useDispatch} from 'react-redux';
 import { deleteQuestion} from '../../store/question';
+import QuestionFeed from '../QuestionFeed';
+import { NavLink, Route, useParams, useHistory } from 'react-router-dom';
 
 const DeleteQuestionForm = ({ question, hideForm }) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [topic, setTopic] = useState('');
+    const history = useHistory();
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -20,6 +23,7 @@ const DeleteQuestionForm = ({ question, hideForm }) => {
         if (deletedQuestion) {
             hideForm();
         }
+        history.push("/");
     };
 
     const handleCancelClick = (e) => {
@@ -30,7 +34,7 @@ const DeleteQuestionForm = ({ question, hideForm }) => {
     return (
         <div className="deleteQuestionForm">
             <form onSubmit={handleSubmit}>
-            <button type="submit" >Confirm Delete</button>
+                <button type="submit">Confirm Delete</button>
             <button type="button" onClick={handleCancelClick}>Cancel</button>
             </form>
         </div>
