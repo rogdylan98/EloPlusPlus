@@ -14,9 +14,9 @@ const QuestionDetails = () => {
     console.log(questionId);
     const question = useSelector(state => state.question[questionId]);
     const userId = useSelector(state => state.session.user.id);
-    console.log("userId", userId);
-    console.log("questionId", question.userId);
-    console.log(question);
+    // console.log("userId", userId);
+    // console.log("questionId", question.userId);
+    // console.log(question);
     const [selectedQuestionEdit, setSelectedQuestionEdit] = useState();
     const [selectedQuestionDelete, setSelectedQuestionDelete] = useState();
 
@@ -24,7 +24,7 @@ const QuestionDetails = () => {
     dispatch(getQuestions());
   }, [dispatch]);
 
-  if (!question) {
+  if (!question || !userId) {
       return <QuestionFeed />
   }
 
