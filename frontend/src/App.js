@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import QuestionFeed from "./components/QuestionFeed";
 import QuestionDetails from "./components/QuestionDetails"
+import SplashPage from "./components/SplashPage"
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -36,8 +37,11 @@ function App() {
           <Route path="/question/:questionId">
             <QuestionDetails />
           </Route>
-          <Route path="/">
+          <Route path="/questions">
             <QuestionFeed/>
+          </Route>
+          <Route exact path="/">
+            <SplashPage />
           </Route>
       </Switch>
       </div>

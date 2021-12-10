@@ -56,7 +56,7 @@ const QuestionDetails = () => {
                         </div>) : (null)}
 
             </div>
-             <AnswerFeed />
+             {/* <AnswerFeed /> */}
             {showFormEdit ? (
                 <EditQuestionForm hideForm={() => setShowFormEdit(false)} question={selectedQuestionEdit}/>
             ) : (null) }
