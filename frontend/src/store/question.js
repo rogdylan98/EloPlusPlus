@@ -78,6 +78,7 @@ export const updateQuestion = (data) => async (dispatch) => {
     }
   };
 
+
 export const deleteQuestion = (data) => async (dispatch) => {
     console.log(data);
     const response = await fetch(`/api/question/delete/${data.id}`, {

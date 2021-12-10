@@ -5,7 +5,7 @@ import EditQuestionForm from '../EditQuestionForm/EditQuestionForm';
 import DeleteQuestionForm from '../DeleteQuestionForm/DeleteQuestionForm';
 import { updateQuestion, getOneQuestion, getQuestions } from '../../store/question';
 import QuestionFeed from '../QuestionFeed';
-
+import AnswerFeed from '../AnswerFeed';
 const QuestionDetails = () => {
     const [showFormEdit, setShowFormEdit] = useState(false);
     const [showFormDelete, setShowFormDelete] = useState(false);
@@ -13,6 +13,9 @@ const QuestionDetails = () => {
     const dispatch = useDispatch();
     console.log(questionId);
     const question = useSelector(state => state.question[questionId]);
+    const userId = useSelector(state => state.session.user.id);
+    console.log("userId", userId);
+    console.log("questionId", question.userId);
     console.log(question);
     const [selectedQuestionEdit, setSelectedQuestionEdit] = useState();
     const [selectedQuestionDelete, setSelectedQuestionDelete] = useState();
@@ -40,7 +43,9 @@ const QuestionDetails = () => {
             <div>
                 <h1>{question.title}</h1>
                 <h2>{question.body}</h2>
-                <button onClick={() => {
+                {userId === question.userId ? (
+                    <div>
+                    <button onClick={() => {
                             setSelectedQuestionEdit(question)
                             setShowFormEdit(true)
                         }}>Edit</button>
@@ -48,7 +53,10 @@ const QuestionDetails = () => {
                             setSelectedQuestionDelete(question)
                             setShowFormDelete(true)
                         }}>Delete</button>
+                        </div>) : (null)}
+
             </div>
+             <AnswerFeed />
             {showFormEdit ? (
                 <EditQuestionForm hideForm={() => setShowFormEdit(false)} question={selectedQuestionEdit}/>
             ) : (null) }

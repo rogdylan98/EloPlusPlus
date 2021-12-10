@@ -42,7 +42,6 @@ function App() {
       </Switch>
       </div>
     </main>
-
     </>
   );
 }
