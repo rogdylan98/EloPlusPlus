@@ -1,4 +1,4 @@
-
+import { csrfFetch } from "./csrf";
 const LOAD = 'question/LOAD';
 const ADD_ONE = 'question/ADD_ONE';
 const DELETE_ONE = 'question/DELETE_ONE';
@@ -25,7 +25,7 @@ const updateQ = (id, question) => ({
 })
 
 export const createQuestion = (data) => async (dispatch) => {
-    const response = await window.csrfFetch (`/api/question/`, {
+    const response = await csrfFetch (`/api/question/`, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
@@ -58,7 +58,7 @@ export const getQuestions = () => async (dispatch) => {
 
 export const updateQuestion = (data) => async (dispatch) => {
     console.log(data);
-    const response = await window.csrfFetch (`/api/question/${data.id}`, {
+    const response = await csrfFetch (`/api/question/${data.id}`, {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'
