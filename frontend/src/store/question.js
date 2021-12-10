@@ -39,6 +39,15 @@ export const createQuestion = (data) => async (dispatch) => {
     }
 };
 
+export const getOneQuestion = (id) => async (dispatch) => {
+    const response = await fetch(`/api/question/${id}`);
+
+    if (response.ok) {
+      const question = await response.json();
+      dispatch(addOneQuestion(question));
+    }
+  };
+
 export const getQuestions = () => async (dispatch) => {
     const response = await fetch (`/api/question`);
     if (response.ok) {
@@ -64,7 +73,7 @@ export const updateQuestion = (data) => async (dispatch) => {
     //   return list;
         // const question = await response.json;
         console.log("DATA", data);
-        await dispatch(updateQ(data.id, data));
+        dispatch(updateQ(data.id, data));
         return data;
     }
   };
@@ -75,7 +84,8 @@ export const deleteQuestion = (data) => async (dispatch) => {
         method: 'get'
       });
       if (response.ok) {
-        await dispatch(deleteOneQuestion(data.id));
+        dispatch(deleteOneQuestion(data.id));
+        return response;
       }
 }
 const initialState = {

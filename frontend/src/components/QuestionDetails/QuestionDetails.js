@@ -3,26 +3,40 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
 import EditQuestionForm from '../EditQuestionForm/EditQuestionForm';
 import DeleteQuestionForm from '../DeleteQuestionForm/DeleteQuestionForm';
-import { updateQuestion } from '../../store/question';
+import { updateQuestion, getOneQuestion, getQuestions } from '../../store/question';
+import QuestionFeed from '../QuestionFeed';
 
-const QuestionDetails = ({question, clickHandler}) => {
+const QuestionDetails = () => {
     const [showFormEdit, setShowFormEdit] = useState(false);
     const [showFormDelete, setShowFormDelete] = useState(false);
+    const {questionId} = useParams();
+    const dispatch = useDispatch();
+    console.log(questionId);
+    const question = useSelector(state => state.question[questionId]);
+    console.log(question);
     const [selectedQuestionEdit, setSelectedQuestionEdit] = useState();
     const [selectedQuestionDelete, setSelectedQuestionDelete] = useState();
-    const currentQId = question.id;
-    const currentQ = useSelector(state => state.question[currentQId]);
-    console.log("currentQ", currentQ);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(updateQuestion(currentQ));
-    }, [dispatch, currentQ]);
 
+  useEffect(() => {
+    dispatch(getQuestions());
+  }, [dispatch]);
 
-    console.log("clickHandler", clickHandler);
+  if (!question) {
+      return <QuestionFeed />
+  }
+
+    // const currentQId = question.id;
+    // const currentQ = useSelector(state => state.question[currentQId]);
+    // console.log("currentQ", currentQ);
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //     dispatch(updateQuestion(question));
+    // }, [dispatch, question]);
     return (
         <main>
-            <button onClick={clickHandler}>Back</button>
+            <NavLink to="/">
+                <button>Back</button>
+            </NavLink>
             <div>
                 <h1>{question.title}</h1>
                 <h2>{question.body}</h2>
