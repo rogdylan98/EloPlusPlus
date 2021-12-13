@@ -5,10 +5,11 @@ const { User } = require('../../db/models');
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const questionRouter = require('./questions.js');
+const answerRouter = require('./answer.js');
 router.use('/session', sessionRouter);
 router.use('/question', questionRouter);
 router.use('/users', usersRouter);
-
+router.use('/answers', answerRouter);
 
 // router.post('/test', (req, res) => {
 //   res.json({ requestBody: req.body });

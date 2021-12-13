@@ -26,22 +26,22 @@ const QuestionFeed = () => {
         return null;
     }
     return (
-        <main>
+        <div>
             <button className="askQuestion" onClick={() => setShowFormCreate(true)}>Add Question</button>
             {!selectedQuestion && (<nav>
                 {Object.values(questions).map(question =>
-                <div className="questionBlock">
+                <main className="questionBlock">
                     <NavLink key={question.id} to={`/question/${question.id}`}>
                         <h1 className="questionTitle">{question.title}</h1>
                     </NavLink>
-                </div>
+                </main>
                 )}
             </nav>)}
             {showFormCreate ? (
                 <CreateQuestionForm hideForm={() => setShowFormCreate(false)}/>
             ) : (null) }
             {/* {selectedQuestion && <QuestionDetails question={selectedQuestion} clickHandler={() => {setSelectedQuestion(null)}} />} */}
-        </main>
+        </div>
     )
 }
 

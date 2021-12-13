@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import QuestionFeed from "./components/QuestionFeed";
 import QuestionDetails from "./components/QuestionDetails"
 import SplashPage from "./components/SplashPage"
+import AnswerFeed from "./components/AnswerFeed";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -31,13 +32,13 @@ function App() {
         </Switch>
       )}
     </nav>
-    <main>
+    <div>
       <div className="questionFeed">
       <Switch>
           <Route path="/question/:questionId">
             <QuestionDetails />
           </Route>
-          <Route path="/questions">
+          <Route exact path="/questions">
             <QuestionFeed/>
           </Route>
           <Route exact path="/">
@@ -45,7 +46,7 @@ function App() {
           </Route>
       </Switch>
       </div>
-    </main>
+    </div>
     </>
   );
 }

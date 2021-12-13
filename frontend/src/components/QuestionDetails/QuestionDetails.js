@@ -6,23 +6,27 @@ import DeleteQuestionForm from '../DeleteQuestionForm/DeleteQuestionForm';
 import { updateQuestion, getOneQuestion, getQuestions } from '../../store/question';
 import QuestionFeed from '../QuestionFeed';
 import AnswerFeed from '../AnswerFeed';
+import { getAnswers } from '../../store/answer';
 const QuestionDetails = () => {
     const [showFormEdit, setShowFormEdit] = useState(false);
     const [showFormDelete, setShowFormDelete] = useState(false);
     const {questionId} = useParams();
     const dispatch = useDispatch();
+
     console.log(questionId);
     const question = useSelector(state => state.question[questionId]);
-    const userId = useSelector(state => state.session.user.id);
+    const userId = useSelector(state => state.session.user?.id);
+    const answers = useSelector(state => state.answer);
+
+    useEffect(() => {
+      dispatch(getAnswers(questionId));
+    }, [dispatch]);
+    console.log(answers);
     // console.log("userId", userId);
     // console.log("questionId", question.userId);
     // console.log(question);
     const [selectedQuestionEdit, setSelectedQuestionEdit] = useState();
     const [selectedQuestionDelete, setSelectedQuestionDelete] = useState();
-
-  useEffect(() => {
-    dispatch(getQuestions());
-  }, [dispatch]);
 
   if (!question || !userId) {
       return <QuestionFeed />
@@ -36,8 +40,8 @@ const QuestionDetails = () => {
     //     dispatch(updateQuestion(question));
     // }, [dispatch, question]);
     return (
-        <main>
-            <NavLink to="/">
+        <div>
+            <NavLink to="/questions">
                 <button>Back</button>
             </NavLink>
             <div>
@@ -56,14 +60,25 @@ const QuestionDetails = () => {
                         </div>) : (null)}
 
             </div>
-             {/* <AnswerFeed /> */}
+             {/* <AnswerFeed answers={answers}/> */}
+             <div>
+             {
+                Object.values(answers).map(answer =>
+                    <div className="answerBlock">
+                        <NavLink key={answer.id} to={`/answer/${answer.id}`}>
+                            <h1 className="answerBody">{answer.body}</h1>
+                        </NavLink>
+                    </div>
+                )
+            }
+             </div>
             {showFormEdit ? (
                 <EditQuestionForm hideForm={() => setShowFormEdit(false)} question={selectedQuestionEdit}/>
             ) : (null) }
             {showFormDelete ? (
                 <DeleteQuestionForm hideForm={() => setShowFormDelete(false)} question={selectedQuestionDelete}/>
             ) : (null) }
-        </main>
+        </div>
     )
 }
 
