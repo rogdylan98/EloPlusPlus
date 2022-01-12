@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import {NavLink, Redirect } from 'react-router-dom';
+import {NavLink, Redirect, useHistory } from 'react-router-dom';
 import SplashPage from "../SplashPage";
-
+import './Navigation.css';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const [loggedOut, setLoggedOut] = useState(false);
-
+  const history = useHistory();
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
@@ -30,14 +30,21 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
-
+    history.push(`/`);
   };
 
   return (
     <>
-      <button className="log-out" onClick={openMenu}>Log Out
-        <i className="fas-fa-user-circle" />
-      </button>
+      <div>
+        <button className="log-out" onClick={openMenu}>Log Out
+          <i className="fas-fa-user-circle" />
+        </button>
+        {/* <div className="back">
+          <NavLink to="/questions">
+              <button >Back</button>
+          </NavLink>
+        </div> */}
+      </div>
       {showMenu && (
         <ul className="profile-dropdown">
           <li>{user.username}</li>
