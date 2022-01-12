@@ -23,7 +23,7 @@ const DeleteQuestionForm = ({ question, hideForm }) => {
         if (deletedQuestion) {
             hideForm();
         }
-        history.push("/");
+        history.push("/questions");
     };
 
     const handleCancelClick = (e) => {
