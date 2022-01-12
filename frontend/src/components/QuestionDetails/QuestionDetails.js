@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
+import './QuestionDetails.css'
 import EditQuestionForm from '../EditQuestionForm/EditQuestionForm';
 import DeleteQuestionForm from '../DeleteQuestionForm/DeleteQuestionForm';
 import { updateQuestion, getOneQuestion, getQuestions } from '../../store/question';
 import QuestionFeed from '../QuestionFeed';
 import AnswerFeed from '../AnswerFeed';
+import CreateQuestionForm from '../QuestionForm/CreateQuestionForm';
 import { getAnswers } from '../../store/answer';
 const QuestionDetails = () => {
     const [showFormEdit, setShowFormEdit] = useState(false);
@@ -16,12 +18,13 @@ const QuestionDetails = () => {
     console.log(questionId);
     const question = useSelector(state => state.question[questionId]);
     const userId = useSelector(state => state.session.user?.id);
+    const userName = useSelector(state => state.session.user?.username)
     const answers = useSelector(state => state.answer);
+    const [showFormCreate, setShowFormCreate] = useState(false);
 
     useEffect(() => {
       dispatch(getAnswers(questionId));
-    }, [dispatch]);
-    console.log(answers);
+    }, [dispatch, questionId]);
     // console.log("userId", userId);
     // console.log("questionId", question.userId);
     // console.log(question);
@@ -32,23 +35,19 @@ const QuestionDetails = () => {
       return <QuestionFeed />
   }
 
-    // const currentQId = question.id;
-    // const currentQ = useSelector(state => state.question[currentQId]);
-    // console.log("currentQ", currentQ);
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch(updateQuestion(question));
-    // }, [dispatch, question]);
     return (
         <div>
-            <NavLink to="/questions">
-                <button>Back</button>
-            </NavLink>
             <div>
-                <h1>{question.title}</h1>
+            <button className="askQuestion" onClick={() => setShowFormCreate(true)}>Add Question</button>
+            </div>
+            <div className="questionDiv">
+                <div className="questionInfo">
+                    <h2>User: {userName}</h2>
+                    <h1>{question.title}</h1>
+                </div>
                 <h2>{question.body}</h2>
                 {userId === question.userId ? (
-                    <div>
+                    <div className="buttons">
                     <button onClick={() => {
                             setSelectedQuestionEdit(question)
                             setShowFormEdit(true)
@@ -60,23 +59,23 @@ const QuestionDetails = () => {
                         </div>) : (null)}
 
             </div>
-             {/* <AnswerFeed answers={answers}/> */}
-             <div>
-             {
-                Object.values(answers).map(answer =>
-                    <div className="answerBlock">
-                        <NavLink key={answer.id} to={`/answer/${answer.id}`}>
+                {
+                    Object.values(answers).map(answer =>
+                        <div className="answerBlock">
                             <h1 className="answerBody">{answer.body}</h1>
-                        </NavLink>
-                    </div>
-                )
-            }
+                        </div>
+                    )
+                }
+             <div>
              </div>
             {showFormEdit ? (
                 <EditQuestionForm hideForm={() => setShowFormEdit(false)} question={selectedQuestionEdit}/>
             ) : (null) }
             {showFormDelete ? (
                 <DeleteQuestionForm hideForm={() => setShowFormDelete(false)} question={selectedQuestionDelete}/>
+            ) : (null) }
+            {showFormCreate ? (
+                <CreateQuestionForm hideForm={() => setShowFormCreate(false)}/>
             ) : (null) }
         </div>
     )
