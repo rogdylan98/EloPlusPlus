@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
     background-color: white;
+
 }
 
 
@@ -21,6 +21,7 @@
 h1.title {
     display: flex;
     flex-direction: row;
+    color: black;
 }
 
 .active {
@@ -30,10 +31,12 @@ h1.title {
 .navList > a {
     display: flex;
     flex-direction: row;
-    color: red;
-    padding-left: 50px;
-    padding-right: 50px;
-    font-size: 15px;
+    justify-content: center;
+    color: black;
+    padding-top: 5px;
+    /* padding-left: 50px;
+    padding-right: 50px; */
+    font-size: 20px;
     font-family: sans-serif;
     text-decoration: none;
     font-weight: bold;

@@ -11,7 +11,7 @@ const QuestionFeed = () => {
     const dispatch = useDispatch();
     // const { questionId } = useParams();
     const questions = useSelector(state => state.question);
-    const user = useSelector(state => state.session.user);
+    const user = useSelector(state => state.session?.user);
     const [selectedQuestion, setSelectedQuestion] = useState();
     const [showFormCreate, setShowFormCreate] = useState(false);
 
@@ -19,9 +19,9 @@ const QuestionFeed = () => {
     useEffect(()=> {
         dispatch(getQuestions());
     }, [dispatch]);
-    if (!user) {
-       return <Redirect to="/" />
-    }
+    // if (!user) {
+    //    return <Redirect to="/" />
+    // }
     if (!questions ) {
         return null;
     }
@@ -40,7 +40,7 @@ const QuestionFeed = () => {
             {showFormCreate ? (
                 <CreateQuestionForm hideForm={() => setShowFormCreate(false)}/>
             ) : (null) }
-            {/* {selectedQuestion && <QuestionDetails question={selectedQuestion} clickHandler={() => {setSelectedQuestion(null)}} />} */}
+            {selectedQuestion && <QuestionDetails question={selectedQuestion} clickHandler={() => {setSelectedQuestion(null)}} />}
         </div>
     )
 }
