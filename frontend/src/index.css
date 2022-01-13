@@ -1,10 +1,51 @@
-/* TODO Add site wide styles */
-/* div {
+button {
+    border: 2px solid white;
+    border-radius: 3rem;
+    color: white;
+    background: black;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 20px;
+    z-index: 0;
+}
+
+button:hover {
+    color: white;
+    background: red;
+}
+
+form {
     display: flex;
     flex-direction: column;
     align-items: center;
-} */
+    align-content: center;
+    line-height: 5vh;
+    margin-top: 30px;
+    border: 2px solid white;
+}
 
-/* a {
-    color: red;
-} */
+.formDiv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    z-index: 200;
+    color: white;
+    font-family:'Courier New', Courier, monospace;
+}
+
+h1 {
+    color: white;
+    font-family:'Courier New', Courier, monospace;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+li {
+    color: white;
+    font-family:'Courier New', Courier, monospace;
+}

@@ -6,16 +6,18 @@ import { getQuestions } from '../../store/question';
 import CreateQuestionForm from '../QuestionForm/CreateQuestionForm';
 import QuestionDetails from '../QuestionDetails';
 import SplashPage from '../SplashPage';
-
+import Navigation from '../Navigation';
+import ProfileButton from '../Navigation/ProfileButton';
 const QuestionFeed = () => {
     const dispatch = useDispatch();
     // const { questionId } = useParams();
     const questions = useSelector(state => state.question);
     const user = useSelector(state => state.session?.user);
+    console.log(user);
     const [selectedQuestion, setSelectedQuestion] = useState();
     const [showFormCreate, setShowFormCreate] = useState(false);
-
-
+    const [home, setHome] = useState(false);
+    const [showLogout, setShowLogout] = useState(false);
     useEffect(()=> {
         dispatch(getQuestions());
     }, [dispatch]);
@@ -26,21 +28,28 @@ const QuestionFeed = () => {
         return null;
     }
     return (
+        <div className='questionFeed'>
         <div>
-            <button className="askQuestion" onClick={() => setShowFormCreate(true)}>Add Question</button>
-            {!selectedQuestion && (<nav>
+            <button onClick={() => setHome(true)}>Home</button>
+            <button onClick={() => setShowFormCreate(true)}>Add Question</button>
+            <button onClick={() => setShowLogout(true)}>Logout</button>
+        </div>
+            <h1 className='feed'>Question Feed</h1>
+            {!selectedQuestion && (<div className="questionBlock">
                 {Object.values(questions).map(question =>
-                <main className="questionBlock">
+                <div>
                     <NavLink key={question.id} to={`/question/${question.id}`}>
-                        <h1 className="questionTitle">{question.title}</h1>
+                        <h2 className="questionTitle">{question.title}</h2>
                     </NavLink>
-                </main>
+                </div>
                 )}
-            </nav>)}
+            </div>)}
             {showFormCreate ? (
                 <CreateQuestionForm hideForm={() => setShowFormCreate(false)}/>
             ) : (null) }
             {selectedQuestion && <QuestionDetails question={selectedQuestion} clickHandler={() => {setSelectedQuestion(null)}} />}
+            {home && <Redirect to={'/questions'}/>}
+            {showLogout && <ProfileButton user={user} prop={showLogout}/>}
         </div>
     )
 }

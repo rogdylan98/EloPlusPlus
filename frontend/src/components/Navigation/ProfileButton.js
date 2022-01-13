@@ -5,9 +5,9 @@ import {NavLink, Redirect, useHistory } from 'react-router-dom';
 import SplashPage from "../SplashPage";
 import './Navigation.css';
 
-function ProfileButton({ user }) {
+function ProfileButton({ user, prop }) {
   const dispatch = useDispatch();
-  const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(prop);
   const [loggedOut, setLoggedOut] = useState(false);
   const history = useHistory();
   const openMenu = () => {
@@ -36,9 +36,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <div>
-        <button className="log-out" onClick={openMenu}>Log Out
-          <i className="fas-fa-user-circle" />
-        </button>
+        {/* <button className="log-out" onClick={openMenu}>Log Out</button> */}
         {/* <div className="back">
           <NavLink to="/questions">
               <button >Back</button>

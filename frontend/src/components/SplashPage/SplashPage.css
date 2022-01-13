@@ -24,29 +24,3 @@
     position: relative;
     top: -150px;
 }
-
-button {
-    border: 2px solid white;
-    border-radius: 3rem;
-    color: white;
-    background: black;
-    font-family:'Courier New', Courier, monospace;
-    font-size: 20px;
-    z-index: 0;
-}
-
-button.login:hover {
-    font-size: 30px;
-    color: white;
-    background: red;
-}
-button.register:hover {
-    font-size: 30px;
-    color: white;
-    background: red;
-}
-button.demo:hover {
-    font-size: 30px;
-    color: white;
-    background: red;
-}

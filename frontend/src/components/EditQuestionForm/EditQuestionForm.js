@@ -37,7 +37,7 @@ const EditQuestionForm = ({ question, hideForm }) => {
     };
 
     return (
-        <div className="editQuestionForm">
+        <div className="formDiv">
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
