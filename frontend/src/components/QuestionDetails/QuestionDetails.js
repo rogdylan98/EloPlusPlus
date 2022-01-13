@@ -16,8 +16,8 @@ const QuestionDetails = () => {
     const dispatch = useDispatch();
     const question = useSelector(state => state.question[questionId]);
     const userId = useSelector(state => state.session?.user?.id);
-    const questionUserId = useSelector(state => state?.question[questionId]?.userId)
     const user = useSelector(state => state.session?.user);
+    const userName = useSelector(state => state.session?.user?.username);
     const [showFormCreate, setShowFormCreate] = useState(false);
     const [home, setHome] = useState(false);
     const [showLogout, setShowLogout] = useState(false);
@@ -48,7 +48,7 @@ const QuestionDetails = () => {
             </div>
             <div className="questionDiv">
                 <div className="questionInfo">
-                    <h2>UserId: {questionUserId}</h2>
+                    <h2>User: {userName}</h2>
                     <h1>{question.title}</h1>
                     <h2>{question.body}</h2>
                 </div>

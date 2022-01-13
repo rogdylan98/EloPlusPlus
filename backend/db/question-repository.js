@@ -7,7 +7,6 @@ async function create(details) {
 
 async function update(details) {
     const id = details.id;
-    console.log("DETAISL:", details)
     delete details.id;
     const updatedQuestion = await Question.update(
         details,
@@ -15,7 +14,6 @@ async function update(details) {
             where: { id }
         }
     );
-    console.log("AM I SURE", updatedQuestion)
     return id;
 }
 
