@@ -1,4 +1,4 @@
-button {
+/* button {
     display: inline-block;
     padding:0.3em 1.2em;
     margin:0 0.3em 0.3em 0;
@@ -15,7 +15,7 @@ button {
     width: 90px;
     height: 60px;
 
-}
+} */
 
 .askQuestion {
     position: absolute;
@@ -23,10 +23,10 @@ button {
     top: 1%;
 
 }
-h1 {
+/* h1 {
     font-family: sans-serif;
     color: red;
-}
+} */
 
 
 h1.questionTitle {

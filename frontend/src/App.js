@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
@@ -12,26 +12,27 @@ import AnswerFeed from "./components/AnswerFeed";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const user = useSelector(state => state.session?.user?.id);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (
     <>
-    <nav className="navBar">
-      <h1 className="title">Elo++</h1>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-        </Switch>
-      )}
-    </nav>
+      <nav className="navBar">
+        <h1 className="title">Elo++</h1>
+        <Navigation isLoaded={isLoaded} />
+        {isLoaded && (
+          <Switch>
+            <Route path="/login">
+              <LoginFormPage />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
+          </Switch>
+        )}
+      </nav>
     <div>
       <div className="questionFeed">
       <Switch>

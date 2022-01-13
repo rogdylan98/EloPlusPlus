@@ -1,10 +1,52 @@
-.splash {
-    object-fit: fill;
+.splash{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    z-index: 200;
+    color: white;
+    font-family:'Courier New', Courier, monospace;
 }
 
-h1 {
+.welcome {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    color: black;
+    line-height: 90vh;
+}
+
+.splashButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    position: relative;
+    top: -150px;
+}
+
+button {
+    border: 2px solid white;
+    border-radius: 3rem;
+    color: white;
+    background: black;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 20px;
+    z-index: 0;
+}
+
+button.login:hover {
+    font-size: 30px;
+    color: white;
+    background: red;
+}
+button.register:hover {
+    font-size: 30px;
+    color: white;
+    background: red;
+}
+button.demo:hover {
+    font-size: 30px;
+    color: white;
+    background: red;
 }
