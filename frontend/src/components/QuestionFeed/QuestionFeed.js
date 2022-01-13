@@ -29,7 +29,7 @@ const QuestionFeed = () => {
             <h1 className='name'>Elo++</h1>
         </div>
             <div className='aboutMe'>
-                <a href="https://github.com/rogdylan98">Gihub</a>
+                <a href="https://github.com/rogdylan98">Github</a>
                 <a href="https://www.linkedin.com/in/roger-s-59133b107/">Linkedin</a>
             </div>
             <h1 className='feed'>Question Feed</h1>

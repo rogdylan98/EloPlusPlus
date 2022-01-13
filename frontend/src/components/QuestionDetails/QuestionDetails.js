@@ -84,7 +84,7 @@ const QuestionDetails = () => {
                 <CreateQuestionForm hideForm={() => setShowFormCreate(false)}/>
             ) : (null) }
             {home && <Redirect to={'/questions'}/>}
-            {showLogout && <ProfileButton user={user}/>}
+            {showLogout && <ProfileButton user={user} prop={showLogout}/>}
         </div>
     )
 }

@@ -27,6 +27,7 @@ function SignupFormPage() {
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
+          <Redirect to="/questions" />
         });
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
