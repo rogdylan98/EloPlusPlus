@@ -57,7 +57,6 @@ export const getAnswers = (questionId) => async (dispatch) => {
 }
 
 export const updateAnswer = (data) => async (dispatch) => {
-    console.log(data);
     const response = await csrfFetch (`/api/answer/${data.id}`, {
       method: 'put',
       headers: {
@@ -66,7 +65,6 @@ export const updateAnswer = (data) => async (dispatch) => {
       body: JSON.stringify(data)
     });
     if (response.ok) {
-        console.log("DATA", data);
         dispatch(updateA(data.id, data));
         return data;
     }
@@ -74,7 +72,6 @@ export const updateAnswer = (data) => async (dispatch) => {
 
 
 export const deleteAnswer = (data) => async (dispatch) => {
-    console.log(data);
     const response = await fetch(`/api/answer/delete/${data.id}`, {
         method: 'get'
       });

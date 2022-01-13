@@ -24,7 +24,6 @@ const EditQuestionForm = ({ question, hideForm }) => {
         const updatedQuestion = await dispatch(updateQuestion(updatedQ));
         if (updatedQuestion) {
             history.push(`/questions`);
-            console.log(history)
             hideForm();
         }
     };

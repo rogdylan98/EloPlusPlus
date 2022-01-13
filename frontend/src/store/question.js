@@ -57,7 +57,6 @@ export const getQuestions = () => async (dispatch) => {
 }
 
 export const updateQuestion = (data) => async (dispatch) => {
-    console.log(data);
     const response = await csrfFetch (`/api/question/${data.id}`, {
       method: 'put',
       headers: {
@@ -73,7 +72,6 @@ export const updateQuestion = (data) => async (dispatch) => {
 
 
 export const deleteQuestion = (data) => async (dispatch) => {
-    console.log(data);
     const response = await fetch(`/api/question/delete/${data.id}`, {
         method: 'get'
       });

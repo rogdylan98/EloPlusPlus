@@ -32,7 +32,6 @@ router.put(
 
 
 router.get('/delete/:id', asyncHandler(async function(req, res) {
-    console.log("ARE WE HERE");
     await AnswerRepository.deleteOne(req.params.id);
     return res.json(req.params.id);
   }));

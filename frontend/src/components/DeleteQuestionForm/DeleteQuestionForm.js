@@ -15,7 +15,6 @@ const DeleteQuestionForm = ({ question, hideForm }) => {
             body,
             title
         }
-        console.log(deleteQ);
         const deletedQuestion = await dispatch(deleteQuestion(deleteQ));
         if (deletedQuestion) {
             hideForm();
