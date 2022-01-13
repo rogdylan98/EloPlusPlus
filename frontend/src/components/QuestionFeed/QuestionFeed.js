@@ -24,8 +24,8 @@ const QuestionFeed = () => {
         <div className='questionFeed'>
         <div className='nav'>
             <button onClick={() => setHome(true)}>Home</button>
-            <button onClick={() => setShowFormCreate(true)}>Add Question</button>
-            <button onClick={() => setShowLogout(true)}>Logout</button>
+            <button onClick={() => setShowFormCreate(!showFormCreate)}>Add Question</button>
+            <button onClick={() => setShowLogout(!showLogout)}>Logout</button>
             <h1 className='name'>Elo++</h1>
         </div>
             <div className='aboutMe'>
