@@ -8,11 +8,10 @@ import Navigation from "./components/Navigation";
 import QuestionFeed from "./components/QuestionFeed";
 import QuestionDetails from "./components/QuestionDetails"
 import SplashPage from "./components/SplashPage"
-import AnswerFeed from "./components/AnswerFeed";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const user = useSelector(state => state.session?.user?.id);
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);

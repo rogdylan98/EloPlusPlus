@@ -1,14 +1,11 @@
-import { useState } from 'react';
 import { useDispatch} from 'react-redux';
 import { deleteQuestion} from '../../store/question';
-import QuestionFeed from '../QuestionFeed';
-import { NavLink, Route, useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const DeleteQuestionForm = ({ question, hideForm }) => {
     const dispatch = useDispatch();
-    const [title, setTitle] = useState('');
-    const [body, setBody] = useState('');
-    const [topic, setTopic] = useState('');
+    const title = question.title;
+    const body = question.body;
     const history = useHistory();
     const handleSubmit = async (e) => {
         e.preventDefault();

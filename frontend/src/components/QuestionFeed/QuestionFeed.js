@@ -1,19 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, Route, useParams, Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import './QuestionFeed.css';
 import { getQuestions } from '../../store/question';
 import CreateQuestionForm from '../QuestionForm/CreateQuestionForm';
 import QuestionDetails from '../QuestionDetails';
-import SplashPage from '../SplashPage';
-import Navigation from '../Navigation';
 import ProfileButton from '../Navigation/ProfileButton';
 const QuestionFeed = () => {
     const dispatch = useDispatch();
-    // const { questionId } = useParams();
     const questions = useSelector(state => state.question);
     const user = useSelector(state => state.session?.user);
-    console.log(user);
     const [selectedQuestion, setSelectedQuestion] = useState();
     const [showFormCreate, setShowFormCreate] = useState(false);
     const [home, setHome] = useState(false);
@@ -21,19 +17,21 @@ const QuestionFeed = () => {
     useEffect(()=> {
         dispatch(getQuestions());
     }, [dispatch]);
-    // if (!user) {
-    //    return <Redirect to="/" />
-    // }
     if (!questions ) {
         return null;
     }
     return (
         <div className='questionFeed'>
-        <div>
+        <div className='nav'>
             <button onClick={() => setHome(true)}>Home</button>
             <button onClick={() => setShowFormCreate(true)}>Add Question</button>
             <button onClick={() => setShowLogout(true)}>Logout</button>
+            <h1 className='name'>Elo++</h1>
         </div>
+            <div className='aboutMe'>
+                <a href="https://github.com/rogdylan98">Gihub</a>
+                <a href="https://www.linkedin.com/in/roger-s-59133b107/">Linkedin</a>
+            </div>
             <h1 className='feed'>Question Feed</h1>
             {!selectedQuestion && (<div className="questionBlock">
                 {Object.values(questions).map(question =>

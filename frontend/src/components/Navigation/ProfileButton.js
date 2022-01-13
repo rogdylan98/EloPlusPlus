@@ -8,13 +8,7 @@ import './Navigation.css';
 function ProfileButton({ user, prop }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(prop);
-  const [loggedOut, setLoggedOut] = useState(false);
   const history = useHistory();
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
-
   useEffect(() => {
     if (!showMenu) return;
 
@@ -35,14 +29,6 @@ function ProfileButton({ user, prop }) {
 
   return (
     <>
-      <div>
-        {/* <button className="log-out" onClick={openMenu}>Log Out</button> */}
-        {/* <div className="back">
-          <NavLink to="/questions">
-              <button >Back</button>
-          </NavLink>
-        </div> */}
-      </div>
       {showMenu && (
         <ul className="profile-dropdown">
           <li>{user.username}</li>

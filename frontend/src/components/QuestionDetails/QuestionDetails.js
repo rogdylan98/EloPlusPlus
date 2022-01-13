@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, Route, useParams, Redirect } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import './QuestionDetails.css'
 import EditQuestionForm from '../EditQuestionForm/EditQuestionForm';
 import DeleteQuestionForm from '../DeleteQuestionForm/DeleteQuestionForm';
-import { updateQuestion, getOneQuestion, getQuestions } from '../../store/question';
 import QuestionFeed from '../QuestionFeed';
-import AnswerFeed from '../AnswerFeed';
 import CreateQuestionForm from '../QuestionForm/CreateQuestionForm';
 import { getAnswers } from '../../store/answer';
 import ProfileButton from '../Navigation/ProfileButton';
@@ -16,11 +14,9 @@ const QuestionDetails = () => {
     const [showFormDelete, setShowFormDelete] = useState(false);
     const {questionId} = useParams();
     const dispatch = useDispatch();
-
-    console.log(questionId);
     const question = useSelector(state => state.question[questionId]);
     const userId = useSelector(state => state.session?.user?.id);
-    const questionUserId = useSelector(state => state.question[questionId].userId)
+    const questionUserId = useSelector(state => state?.question[questionId]?.userId)
     const user = useSelector(state => state.session?.user);
     const [showFormCreate, setShowFormCreate] = useState(false);
     const [home, setHome] = useState(false);
@@ -31,9 +27,6 @@ const QuestionDetails = () => {
     }, [dispatch, questionId]);
 
     const answers = useSelector(state => state.answer);
-    // console.log("userId", userId);
-    // console.log("questionId", question.userId);
-    // console.log(question);
     const [selectedQuestionEdit, setSelectedQuestionEdit] = useState();
     const [selectedQuestionDelete, setSelectedQuestionDelete] = useState();
 
@@ -44,9 +37,15 @@ const QuestionDetails = () => {
     return (
         <div>
             <div>
-            <button onClick={() => setHome(true)}>Home</button>
-            <button onClick={() => setShowFormCreate(true)}>Add Question</button>
-            <button onClick={() => setShowLogout(true)}>Logout</button>            </div>
+                <button onClick={() => setHome(true)}>Home</button>
+                <button onClick={() => setShowFormCreate(true)}>Add Question</button>
+                <button onClick={() => setShowLogout(true)}>Logout</button>
+                <h1 className='name'>Elo++</h1>
+            </div>
+            <div className='aboutMe'>
+                <a href="https://github.com/rogdylan98">Github</a>
+                <a href="https://www.linkedin.com/in/roger-s-59133b107/">Linkedin</a>
+            </div>
             <div className="questionDiv">
                 <div className="questionInfo">
                     <h2>UserId: {questionUserId}</h2>
