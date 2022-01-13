@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import {NavLink, Redirect, useHistory } from 'react-router-dom';
-import SplashPage from "../SplashPage";
+import {useHistory } from 'react-router-dom';
 import './Navigation.css';
 
 function ProfileButton({ user, prop }) {
