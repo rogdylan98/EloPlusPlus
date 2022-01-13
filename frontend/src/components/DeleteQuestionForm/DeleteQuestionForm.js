@@ -32,7 +32,7 @@ const DeleteQuestionForm = ({ question, hideForm }) => {
     };
 
     return (
-        <div className="deleteQuestionForm">
+        <div className="deleteformDiv">
             <form onSubmit={handleSubmit}>
                 <button type="submit">Confirm Delete</button>
             <button type="button" onClick={handleCancelClick}>Cancel</button>

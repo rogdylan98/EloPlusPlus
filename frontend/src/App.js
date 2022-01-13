@@ -33,21 +33,19 @@ function App() {
           </Switch>
         )}
       </nav>
-    <div>
       <div className="questionFeed">
       <Switch>
-          <Route path="/question/:questionId">
-            <QuestionDetails />
+          <Route exact path="/">
+            <SplashPage />
           </Route>
           <Route exact path="/questions">
             <QuestionFeed/>
           </Route>
-          <Route exact path="/">
-            <SplashPage />
+          <Route exact path="/question/:questionId">
+            <QuestionDetails />
           </Route>
       </Switch>
       </div>
-    </div>
     </>
   );
 }
