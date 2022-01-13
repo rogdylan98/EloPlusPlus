@@ -5,15 +5,16 @@
 import './SplashPage.css';
 const SplashPage = () => {
     return (
-        <main>
-            <div className="splash">
-                <h1>Welcome to Elo++</h1>
-                <img className="splash" src="https://www.pngfind.com/pngs/m/420-4204357_quora-background-hd-png-download.png"
-                    alt="pic"
-                />
-
+        <div className='splash'>
+        <div className='welcome'>
+            <h1> Welcome to Elo++</h1>
+        </div>
+            <div className='splashButtons'>
+                <button className='login'>Log-In</button>
+                <button className='register'>Create an Account</button>
+                <button className='demo'>Demo User</button>
             </div>
-        </main>
+        </div>
     )
 }
 

@@ -1,11 +1,17 @@
 .navBar {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    /* justify-content: center; */
     background-color: white;
-
+    right: 50px;
 }
 
+.loginLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    color: black;
+}
 
 .log-out {
   border: none;
@@ -28,14 +34,15 @@ h1.title {
     font-size: 15px;
     font-family: Arial, Helvetica, sans-serif;
 }
-.navList > a {
+a {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     color: black;
     padding-top: 5px;
     /* padding-left: 50px;
     padding-right: 50px; */
+    padding-right: 10px;
     font-size: 20px;
     font-family: sans-serif;
     text-decoration: none;
