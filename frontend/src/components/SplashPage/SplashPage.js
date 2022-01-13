@@ -1,14 +1,9 @@
-// const { NavLink } = require("react-router-dom")
-// const { signup } = require("../../store/session")
-
-// import { NavLink } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 
 import LoginFormPage from '../LoginFormPage';
-import QuestionFeed from '../QuestionFeed';
 import SignupFormPage from '../SignupFormPage';
 import './SplashPage.css';
 

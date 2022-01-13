@@ -11,10 +11,6 @@ router.use('/question', questionRouter);
 router.use('/users', usersRouter);
 router.use('/answers', answerRouter);
 
-// router.post('/test', (req, res) => {
-//   res.json({ requestBody: req.body });
-// });
-
 //test errors route
 router.get('/set-token-cookie', asyncHandler(async (_req, res) => {
   const user = await User.findOne({
@@ -25,9 +21,5 @@ router.get('/set-token-cookie', asyncHandler(async (_req, res) => {
   setTokenCookie(res, user);
   return res.json({ user });
 }));
-
-// router.post('/test', function(req, res) {
-//     res.json({ requestBody: req.body });
-//   });
 
 module.exports = router;

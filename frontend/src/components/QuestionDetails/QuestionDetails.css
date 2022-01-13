@@ -11,3 +11,24 @@
     justify-content: center;
     margin-top: 50px;
 }
+
+.name {
+    position: relative;
+    margin-left: 93vh;
+    top: -5vh;
+}
+
+.aboutMe {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    position: relative;
+    top: -10vh;
+    color: white;
+    padding-right: 10px;
+}
+ a {
+     color: white;
+     padding-right: 10px;
+
+ }

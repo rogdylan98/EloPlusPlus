@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch} from 'react-redux';
 import { updateQuestion} from '../../store/question';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 
 const EditQuestionForm = ({ question, hideForm }) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    // const { questionId } = useParams();
-    // console.log("LOOK HERE", useParams())
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [topic, setTopic] = useState('');
@@ -41,14 +39,14 @@ const EditQuestionForm = ({ question, hideForm }) => {
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
-                    placeholder="title"
+                    placeholder={question.title}
                     required
                     value={title}
                     onChange={updateTitle}
                 />
                 <input
                     type="text"
-                    placeholder="Write your question here!"
+                    placeholder={question.body}
                     required
                     value={body}
                     onChange={updateBody}

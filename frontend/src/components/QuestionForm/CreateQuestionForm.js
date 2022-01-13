@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createQuestion} from '../../store/question';
 import { useHistory } from 'react-router-dom';
@@ -36,7 +36,6 @@ const CreateQuestionForm = ({ hideForm }) => {
     return (
         <div className="formDiv">
             <form onSubmit={handleSubmit}>
-                {/* <input type="hidden" name="_csrf" value="<%= csrftoken %>"/> */}
                 <input
                     type="text"
                     placeholder="title"

@@ -7,7 +7,6 @@ const QuestionRepository = require('../../db/question-repository');
 const router = express.Router();
 
 router.get('/:id', asyncHandler(async function(req, res){
-    console.log("REQ PARAMAS", req.params.id);
     const answers = await AnswerRepository.list(req.params.id);
     return res.json(answers);
 }));
@@ -31,10 +30,6 @@ router.put(
     })
 );
 
-// router.get('/:id', asyncHandler(async function(req, res) {
-//     const answer = await AnswerRepository.one(req.params.id);
-//     return res.json(answer);
-//   }));
 
 router.get('/delete/:id', asyncHandler(async function(req, res) {
     console.log("ARE WE HERE");

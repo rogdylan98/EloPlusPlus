@@ -66,13 +66,6 @@ export const updateQuestion = (data) => async (dispatch) => {
       body: JSON.stringify(data)
     });
     if (response.ok) {
-    //   const getResponse = await fetch (`/api/question`);
-    //   const list = await getResponse.json();
-    //   console.log("SUCCESS")
-    //   dispatch(updateList(list));
-    //   return list;
-        // const question = await response.json;
-        console.log("DATA", data);
         dispatch(updateQ(data.id, data));
         return data;
     }

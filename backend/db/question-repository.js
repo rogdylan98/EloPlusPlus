@@ -20,7 +20,6 @@ async function update(details) {
 }
 
 async function one(id) {
-    // return await Question.scope("detailed").findByPk(id);
     return await Question.findByPk(id)
 
 }

@@ -1,39 +1,10 @@
-/* button {
-    display: inline-block;
-    padding:0.3em 1.2em;
-    margin:0 0.3em 0.3em 0;
-    border-radius:2em;
-    box-sizing: border-box;
-    text-decoration:none;
-    font-family:'Roboto',sans-serif;
-    font-weight:300;
-    color: white;
-    font-weight: bold;
-    background-color: red;
-    text-align:center;
-    transition: all 0.2s;
-    width: 90px;
-    height: 60px;
-
-} */
-
-/* .askQuestion {
-    position: absolute;
-    right: 3%;
-    top: 1%;
-
-} */
-/* h1 {
-    font-family: sans-serif;
-    color: red;
-} */
 
 
 .questionBlock {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 15vh;
+    margin-top: 5vh;
     border: 2px solid white;
 }
 
@@ -61,3 +32,24 @@ a:link {
     margin-left: 85vh;
     margin-top: 10vh;
 }
+
+.name {
+    position: relative;
+    margin-left: 93vh;
+    top: -5vh;
+}
+
+.aboutMe {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    position: relative;
+    top: -10vh;
+    color: white;
+    padding-right: 10px;
+}
+ a {
+     color: white;
+     padding-right: 10px;
+
+ }
