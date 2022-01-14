@@ -7,7 +7,7 @@ Features:
 * Edit or delete a question if you are the owner of the question
 
 To-Do:
-- [] Implement answers feature so users can create, read, update, and delete answers to questions.
-- [] Add topics feature so users can view questions associated with a specific topic
-- [] Add comments feature so users can interact with answers
-- [] Add like/dislike feature so users can like and dislike questions
+- [ ] Implement answers feature so users can create, read, update, and delete answers to questions.
+- [ ] Add topics feature so users can view questions associated with a specific topic
+- [ ] Add comments feature so users can interact with answers
+- [ ] Add like/dislike feature so users can like and dislike questions
